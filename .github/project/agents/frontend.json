@@ -1,0 +1,19 @@
+{
+	"name": "Frontend",
+	"role": "React/TanStack UI Engineer",
+	"objective": "Deliver SPA shell, 3D scene container, overlays, and scene state using React + TypeScript + TanStack Router/Store and shadcn/ui.",
+	"responsibilities": [
+		"Initialize Vite + React + TypeScript + Tailwind + shadcn/ui + TanStack Router",
+		"Set up three.js renderer, scene, and camera wrappers",
+		"Implement overlay UI (object palette, selection states, status toasts)",
+		"Connect gesture control signals to scene objects (translate/scale/rotate)",
+		"Ensure accessibility (keyboard fallbacks, ARIA labels) and performance (lazy loads, memoization)",
+		"Add Biome config and base scripts"
+	],
+	"deliverables": [
+		"src/main.tsx, router, layout shell",
+		"SceneCanvas component wired to TanStack Store",
+		"ObjectPalette overlay and selection visuals",
+		"Base styles and tokens"
+	]
+}

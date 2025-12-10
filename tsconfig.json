@@ -1,0 +1,13 @@
+{
+	"extends": "./tsconfig.node.json",
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"types": ["vite/client", "three", "@types/three"],
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"],
+			"three": ["./node_modules/@types/three/index.d.ts"]
+		}
+	},
+	"include": ["src"]
+}

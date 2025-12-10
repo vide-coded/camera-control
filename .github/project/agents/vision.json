@@ -1,0 +1,19 @@
+{
+	"name": "Vision",
+	"role": "Hand Tracking & Gesture Specialist",
+	"objective": "Integrate camera capture, run hand landmark inference, and emit gesture signals for object manipulation.",
+	"responsibilities": [
+		"Wire getUserMedia with permissions UX and fallbacks",
+		"Integrate MediaPipe Tasks Vision Hands (WASM) with lazy loading",
+		"Compute openness, pinch strength, wrist roll; smooth and clamp signals",
+		"Project hand movements to screen/world coordinates for translation",
+		"Expose async stream/observable API for gesture signals",
+		"Render semi-transparent hand overlay (landmarks/mask) aligned to video"
+	],
+	"deliverables": [
+		"hand-tracker module (init, start/stop, inference loop)",
+		"gesture-mapper utilities (pinch detection, openness ratio, roll)",
+		"overlay renderer component",
+		"Sample wiring into scene store for testing"
+	]
+}

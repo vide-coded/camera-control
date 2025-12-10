@@ -1,6 +1,236 @@
 {
-  "project": "camera-control",
-  "created": "2025-12-05T19:52:53.975Z",
-  "tasks": [],
-  "currentPhase": "planning"
+	"project": "camera-control",
+	"created": "2025-12-05T19:52:53.975Z",
+	"tasks": [
+		{
+			"id": 1,
+			"task": "Draft architecture blueprint",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": [".github/project/blueprint.md"],
+			"dependencies": []
+		},
+		{
+			"id": 2,
+			"task": "Create phased roadmap",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": [".github/project/roadmap.md"],
+			"dependencies": []
+		},
+		{
+			"id": 3,
+			"task": "Generate minimal agent specs",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": [
+				".github/project/agents/frontend.json",
+				".github/project/agents/vision.json"
+			],
+			"dependencies": []
+		},
+		{
+			"id": 4,
+			"task": "Initialize frontend scaffold (Vite + React + TanStack + Tailwind + shadcn + Biome)",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": [
+				"package.json",
+				"tsconfig.json",
+				"tsconfig.node.json",
+				"vite.config.ts",
+				"tailwind.config.ts",
+				".biome.json",
+				"components.json",
+				"index.html",
+				"src/main.tsx",
+				"src/router.tsx",
+				"src/routes/index.tsx",
+				"src/index.css"
+			],
+			"dependencies": [1, 2, 3]
+		},
+		{
+			"id": 5,
+			"task": "Add Three.js base scene with default object",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": [
+				"src/features/scene/components/scene-canvas.tsx",
+				"src/features/scene/index.ts",
+				"src/routes/index.tsx"
+			],
+			"dependencies": [4]
+		},
+		{
+			"id": 6,
+			"task": "Wire TanStack Store for scene state",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": [
+				"src/stores/scene-store.ts",
+				"src/hooks/use-scene-store.ts",
+				"src/features/scene/components/scene-controls.tsx",
+				"src/router.tsx",
+				"src/routes/index.tsx"
+			],
+			"dependencies": [5]
+		},
+		{
+			"id": 7,
+			"task": "Create UI shell with overlay panel container",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": [
+				"src/components/layout/app-shell.tsx",
+				"src/components/layout/overlay-panel.tsx",
+				"src/routes/index.tsx"
+			],
+			"dependencies": [4]
+		},
+		{
+			"id": 8,
+			"task": "Implement vision pipeline (camera permissions, MediaPipe Hands, gesture signals, overlay)",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": [
+				"package.json",
+				"package-lock.json",
+				"src/features/vision/gesture-mapper.ts",
+				"src/features/vision/hand-tracker.ts",
+				"src/features/vision/hooks/use-hand-tracking.ts",
+				"src/features/vision/components/vision-panel.tsx",
+				"src/features/vision/index.ts",
+				"src/stores/gesture-store.ts",
+				"src/hooks/use-gesture-store.ts",
+				"src/routes/index.tsx"
+			],
+			"dependencies": [6, 7]
+		},
+		{
+			"id": 9,
+			"task": "Bind gesture pipeline to scene controls",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": ["src/features/scene/components/gesture-hud.tsx"],
+			"dependencies": [8]
+		},
+		{
+			"id": 10,
+			"task": "Loosen hand detection thresholds for reliability",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": ["src/features/vision/hand-tracker.ts"],
+			"dependencies": [8]
+		},
+		{
+			"id": 11,
+			"task": "Lower gesture activation thresholds and increase translation gain",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": ["src/stores/scene-store.ts"],
+			"dependencies": [9]
+		},
+		{
+			"id": 12,
+			"task": "Improve hand pickup reliability and UI cues",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": [
+				"src/features/vision/hand-tracker.ts",
+				"src/features/vision/components/vision-panel.tsx"
+			],
+			"dependencies": [10]
+		},
+		{
+			"id": 13,
+			"task": "Auto-restart vision loop when no hand seen",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": ["src/features/vision/hooks/use-hand-tracking.ts"],
+			"dependencies": [12]
+		},
+		{
+			"id": 14,
+			"task": "Add Error Boundaries (Vision & Scene)",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": ["src/components/error-boundary.tsx", "src/routes/index.tsx"],
+			"dependencies": [13]
+		},
+		{
+			"id": 15,
+			"task": "Implement camera permission handling with retry and browser-specific guidance",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": [
+				"src/features/vision/hooks/use-camera-permissions.ts",
+				"src/features/vision/components/vision-panel.tsx"
+			],
+			"dependencies": [14]
+		},
+		{
+			"id": 16,
+			"task": "Verify object palette implementation",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": ["src/features/scene/components/object-palette.tsx"],
+			"dependencies": [15]
+		},
+		{
+			"id": 17,
+			"task": "Performance tuning: throttling, memoization, render optimization, FPS monitoring",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": [
+				"src/routes/index.tsx",
+				"src/features/scene/components/scene-canvas.tsx",
+				"src/features/scene/components/object-palette.tsx",
+				"src/lib/performance.ts"
+			],
+			"dependencies": [16]
+		},
+		{
+			"id": 18,
+			"task": "Keyboard accessibility: arrow keys, WASD, scale, rotation controls, Tab navigation, ARIA labels, shortcuts help",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": [
+				"src/hooks/use-keyboard-controls.ts",
+				"src/components/keyboard-shortcuts.tsx",
+				"src/routes/index.tsx",
+				"src/features/scene/components/scene-canvas.tsx",
+				"src/features/scene/components/scene-controls.tsx",
+				"src/features/scene/components/object-palette.tsx"
+			],
+			"dependencies": [17]
+		},
+		{
+			"id": 19,
+			"task": "Add unit tests for gesture mapper and scene store with Vitest",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": [
+				"vitest.config.ts",
+				"src/test/setup.ts",
+				"src/features/vision/__tests__/gesture-mapper.test.ts",
+				"src/stores/__tests__/scene-store.test.ts",
+				"package.json"
+			],
+			"dependencies": [18]
+		},
+		{
+			"id": 20,
+			"task": "Final polish: comprehensive README, inline documentation, project completion",
+			"agent": "Orchestrator",
+			"status": "completed",
+			"files": [
+				"README.md",
+				"src/features/vision/gesture-mapper.ts",
+				"src/stores/scene-store.ts"
+			],
+			"dependencies": [19]
+		}
+	],
+	"currentPhase": "mvp-complete"
 }
